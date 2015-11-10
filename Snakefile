@@ -23,7 +23,7 @@ rule get_fastq_files_from_sra_file:
     input: "sra/{sample}/{run}/{run}.sra"
     output: "fastq/{sample}/{run}/{run}_1.fastq.gz", "fastq/{sample}/{run}/{run}_2.fastq.gz"
     params: run_prefix=lambda wildcards: wildcards.run[:6]
-    shell: "fastq-dump -I --split-files --gzip --outdir `dirname {output[0]}` `pwd`/{input}"
+    shell: "fastq-dump --defline-seq '@[$ac_]$sn/$ri' --defline-qual '+' --split-files --gzip --outdir `dirname {output[0]}` `pwd`/{input}"
 
 rule get_sra_by_run:
     output: "sra/{sample}/{run}/{run}.sra"
