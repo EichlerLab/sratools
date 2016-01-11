@@ -26,3 +26,9 @@ Download all SRA files grouped by sample id and run accession.
 Extract compressed FASTQs from the SRA files.
 
     snakemake fastq
+
+If the SRA run information is missing proper annotations for sex or sample name
+for a specific sample, an override value for both of these attributes can be
+specified through the Snakemake configuration interface.
+
+    snakemake sra --config sex=F sample=Kamilah
