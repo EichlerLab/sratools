@@ -17,6 +17,7 @@ def _get_run_by_sample_id(wildcards):
 
 rule fastq:
     input: expand("fastq/{sample}/{run}/{run}_1.fastq.gz", zip, sample=SAMPLES, run=RUNS)
+    params: sge_opts=""
 
 rule sra:
     input: expand("sra/{sample}/{run}/{run}.sra", zip, sample=SAMPLES, run=RUNS)
