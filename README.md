@@ -13,6 +13,11 @@ rename the file with a more descriptive title and update `config.json` to point
 to the new file name. Add or remove lines from the run info file to change which
 files to download and extract.
 
+Download the source code for `sratools`.
+
+    git clone https://github.com/EichlerLab/sratools.git
+    cd sratools
+
 Setup the working environment by adding [Anaconda](https://www.continuum.io),
 [Aspera](http://downloads.asperasoft.com/downloads), and [SRA
 Toolkit](https://github.com/ncbi/sra-tools) to the environment.
