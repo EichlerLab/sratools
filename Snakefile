@@ -30,5 +30,5 @@ rule get_fastq_files_from_sra_file:
 
 rule get_sra_by_run:
     output: "sra/{sample}/{run}/{run}.sra"
-    params: sge_opts="", run_prefix=lambda wildcards: wildcards.run[:6]
-    shell: "ascp -i $MOD_GSASPERA_DIR/connect/etc/asperaweb_id_dsa.putty -L . -l 1 -QTr -l 300m anonftp@ftp-trace.ncbi.nlm.nih.gov:/sra/sra-instant/reads/ByRun/sra/SRR/{params.run_prefix}/{wildcards.run}/{wildcards.run}.sra `dirname {output}`"
+    params: sge_opts="", run_prefix=lambda wildcards: wildcards.run[:6], sra_prefix=lambda wildcards: wildcards.run[:3]
+    shell: "ascp -i $MOD_GSASPERA_DIR/connect/etc/asperaweb_id_dsa.putty -L . -l 1 -QTr -l 300m anonftp@ftp-trace.ncbi.nlm.nih.gov:/sra/sra-instant/reads/ByRun/sra/{params.sra_prefix}/{params.run_prefix}/{wildcards.run}/{wildcards.run}.sra `dirname {output}`"
