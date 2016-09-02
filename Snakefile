@@ -1,6 +1,9 @@
 import pandas as pd
+import os
 
-configfile: "config.json"
+SNAKEMAKE_DIR = os.path.dirname(workflow.snakefile)
+
+configfile: "%s/config.json" % SNAKEMAKE_DIR
 SEX = config.get("sex")
 SAMPLE_NAME = config.get("sample")
 
