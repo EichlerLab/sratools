@@ -10,9 +10,12 @@ SAMPLE_NAME = config.get("sample")
 # Load SRA run manifest and annotate it with a human-readable sample id in the
 # format of "<species>_<sex>_<sample_name>".
 RUN_INFO = pd.read_csv(config["sra_run_info"])
-RUN_INFO["SampleId"] = RUN_INFO.apply(lambda row: "_".join(map(str, (row["ScientificName"].replace(" ", "-"), SEX or row["Sex"], SAMPLE_NAME or row["SampleName"]))), axis=1)
+RUN_INFO["SampleId"] = RUN_INFO.apply(lambda row: "_".join(map(str, (row["ScientificName"].replace(" ", "-"), SEX or row["Sex"], SAMPLE_NAME or row["SampleName"].replace(" ", "-")))), axis=1)
 SAMPLES = RUN_INFO["SampleId"].tolist()
 RUNS = RUN_INFO["Run"].tolist()
+
+if not os.path.exists("log"):
+    os.makedirs("log")
 
 def _get_run_by_sample_id(wildcards):
     pass
